@@ -59,9 +59,9 @@ public class PlayfairCipher {
     }
 
     private String format(String old_text) {
-        int i = 0;
-        int len = 0;
-        String text = new String();
+        int i;
+        int len;
+        String text = "";
         len = old_text.length();
         for (int tmp = 0; tmp < len; tmp++) {
             if (old_text.charAt(tmp) == 'j') {
@@ -85,7 +85,7 @@ public class PlayfairCipher {
             size++;
             Original = Original + 'x';
         }
-        String x[] = new String[size / 2];
+        String[] x = new String[size / 2];
         int counter = 0;
         for (int i = 0; i < size / 2; i++) {
             x[i] = Original.substring(counter, counter + 2);
@@ -111,15 +111,15 @@ public class PlayfairCipher {
     }
 
     public String encryptMessage(String Source) {
-        String src_arr[] = Divid2Pairs(Source);
-        String Code = new String();
+        String[] src_arr = Divid2Pairs(Source);
+        String Code = "";
         char one;
         char two;
-        int part1[] = new int[2];
-        int part2[] = new int[2];
-        for (int i = 0; i < src_arr.length; i++) {
-            one = src_arr[i].charAt(0);
-            two = src_arr[i].charAt(1);
+        int[] part1 = new int[2];
+        int[] part2 = new int[2];
+        for (String s : src_arr) {
+            one = s.charAt(0);
+            two = s.charAt(1);
             part1 = GetDiminsions(one);
             part2 = GetDiminsions(two);
             if (part1[0] == part2[0]) {
@@ -152,15 +152,15 @@ public class PlayfairCipher {
     }
 
     public String decryptMessage(String Code) {
-        String Original = new String();
-        String src_arr[] = Divid2Pairs(Code);
+        StringBuilder Original = new StringBuilder();
+        String[] src_arr = Divid2Pairs(Code);
         char one;
         char two;
-        int part1[] = new int[2];
-        int part2[] = new int[2];
-        for (int i = 0; i < src_arr.length; i++) {
-            one = src_arr[i].charAt(0);
-            two = src_arr[i].charAt(1);
+        int[] part1 = new int[2];
+        int[] part2 = new int[2];
+        for (String s : src_arr) {
+            one = s.charAt(0);
+            two = s.charAt(1);
             part1 = GetDiminsions(one);
             part2 = GetDiminsions(two);
             if (part1[0] == part2[0]) {
@@ -186,10 +186,9 @@ public class PlayfairCipher {
                 part1[1] = part2[1];
                 part2[1] = temp;
             }
-            Original = Original + matrix_arr[part1[0]][part1[1]]
-                    + matrix_arr[part2[0]][part2[1]];
+            Original.append(matrix_arr[part1[0]][part1[1]]).append(matrix_arr[part2[0]][part2[1]]);
         }
-        return Original;
+        return Original.toString();
     }
 
     public static void main(String[] args) {
