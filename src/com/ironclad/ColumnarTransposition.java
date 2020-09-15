@@ -11,7 +11,7 @@ public class ColumnarTransposition {
         for (i = 0; i < row; i++) {
             for (j = 0; j < column; j++) {
                 if (k < plainText.length()) {
-                    plainMatrix[i][j] = (int) plainText.charAt(k);
+                    plainMatrix[i][j] = plainText.charAt(k);
                     k++;
                 } else {
                     break;
@@ -34,18 +34,18 @@ public class ColumnarTransposition {
             System.out.println();
         }
 
-        String ct = "";
+        StringBuilder ct = new StringBuilder();
         for (i = 0; i < column; i++) {
             for (j = 0; j < row; j++) {
                 if (cipherMatrix[j][i] == 0)
-                    ct = ct + 'x';
+                    ct.append('x');
                 else {
-                    ct = ct + (char) cipherMatrix[j][i];
+                    ct.append((char) cipherMatrix[j][i]);
                 }
             }
         }
 
-        return ct;
+        return ct.toString();
     }
 
     public static String decrypt(String cipherText, String key, int row, int column, int[][] plainMatrix, int[][] cipherMatrix) {
@@ -66,18 +66,17 @@ public class ColumnarTransposition {
             }
             System.out.println();
         }
-        String pt = "";
+        StringBuilder pt = new StringBuilder();
         for (i = 0; i < row; i++) {
             for (j = 0; j < column; j++) {
-                if (plainMatrix[i][j] == 0)
-                    pt = pt + "";
-                else {
-                    pt = pt + (char) plainMatrix[i][j];
+                if (plainMatrix[i][j] == 0) {
+                } else {
+                    pt.append((char) plainMatrix[i][j]);
                 }
             }
         }
 
-        return pt;
+        return pt.toString();
     }
 
     public static void main(String[] args) {
