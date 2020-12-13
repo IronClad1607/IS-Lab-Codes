@@ -1,9 +1,9 @@
 # IS-Lab-Codes
 
-This repository have various crytography codes. The following techniques are involved:
+This repository has various cryptography codes. The following techniques are involved:
 
-- Caeser Cipher
-- Polyalphabetic Cipher
+- Caesar Cipher
+- Poly Alphabetic Cipher
 - Transpositional Cipher
 - Affine Cipher
 - Diffie Hellman Algorithm
