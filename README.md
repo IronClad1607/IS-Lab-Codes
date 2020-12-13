@@ -12,3 +12,7 @@ This repository have various crytography codes. The following techniques are inv
 - Rail Fence Cipher
 - Vernam Cipher
 - Hill Cipher
+- Auto Key Cipher
+- Euclidean Algorithm
+- DES Algorithm
+- Multiplicative Cipher
