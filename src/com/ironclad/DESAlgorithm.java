@@ -21,7 +21,7 @@ public class DESAlgorithm {
 
     private static void writeData(InputStream is, OutputStream os) throws IOException {
         byte[] buf = new byte[1024];
-        int numRead = 0;
+        int numRead;
         while ((numRead = is.read(buf)) >= 0) {
             os.write(buf, 0, numRead);
         }

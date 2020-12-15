@@ -8,20 +8,20 @@ public class PlayfairCipher {
     private final char[][] matrix_arr = new char[5][5];
 
     public void setKey(String k) {
-        String K_adjust = "";
+        StringBuilder K_adjust = new StringBuilder();
         boolean flag = false;
-        K_adjust = K_adjust + k.charAt(0);
+        K_adjust.append(k.charAt(0));
         for (int i = 1; i < k.length(); i++) {
             for (int j = 0; j < K_adjust.length(); j++) {
                 if (k.charAt(i) == K_adjust.charAt(j)) {
                     flag = true;
                 }
             }
-            if (flag == false)
-                K_adjust = K_adjust + k.charAt(i);
+            if (!flag)
+                K_adjust.append(k.charAt(i));
             flag = false;
         }
-        KeyWord = K_adjust;
+        KeyWord = K_adjust.toString();
     }
 
     public void KeyGen() {
@@ -61,21 +61,21 @@ public class PlayfairCipher {
     private String format(String old_text) {
         int i;
         int len;
-        String text = "";
+        StringBuilder text = new StringBuilder();
         len = old_text.length();
         for (int tmp = 0; tmp < len; tmp++) {
             if (old_text.charAt(tmp) == 'j') {
-                text = text + 'i';
+                text.append('i');
             } else
-                text = text + old_text.charAt(tmp);
+                text.append(old_text.charAt(tmp));
         }
         len = text.length();
         for (i = 0; i < len; i = i + 2) {
             if (text.charAt(i + 1) == text.charAt(i)) {
-                text = text.substring(0, i + 1) + 'x' + text.substring(i + 1);
+                text = new StringBuilder(text.substring(0, i + 1) + 'x' + text.substring(i + 1));
             }
         }
-        return text;
+        return text.toString();
     }
 
     private String[] Divid2Pairs(String new_string) {
@@ -115,8 +115,8 @@ public class PlayfairCipher {
         String Code = "";
         char one;
         char two;
-        int[] part1 = new int[2];
-        int[] part2 = new int[2];
+        int[] part1;
+        int[] part2;
         for (String s : src_arr) {
             one = s.charAt(0);
             two = s.charAt(1);
@@ -156,8 +156,8 @@ public class PlayfairCipher {
         String[] src_arr = Divid2Pairs(Code);
         char one;
         char two;
-        int[] part1 = new int[2];
-        int[] part2 = new int[2];
+        int[] part1;
+        int[] part2;
         for (String s : src_arr) {
             one = s.charAt(0);
             two = s.charAt(1);

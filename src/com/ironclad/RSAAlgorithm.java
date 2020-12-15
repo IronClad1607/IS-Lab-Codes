@@ -6,21 +6,17 @@ import java.util.Scanner;
 
 public class RSAAlgorithm {
 
-    private BigInteger p;
-    private BigInteger q;
-    private BigInteger N;
-    private BigInteger phi;
-    private BigInteger e;
-    private BigInteger d;
-    private final int bitLength = 1024;
-    private Random r;
+    private final BigInteger N;
+    private final BigInteger e;
+    private final BigInteger d;
 
     public RSAAlgorithm() {
-        r = new Random();
-        p = BigInteger.probablePrime(bitLength, r);
-        q = BigInteger.probablePrime(bitLength, r);
+        Random r = new Random();
+        int bitLength = 1024;
+        BigInteger p = BigInteger.probablePrime(bitLength, r);
+        BigInteger q = BigInteger.probablePrime(bitLength, r);
         N = p.multiply(q);
-        phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+        BigInteger phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
         e = BigInteger.probablePrime(bitLength / 2, r);
         while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0) {
             e.add(BigInteger.ONE);
@@ -37,7 +33,7 @@ public class RSAAlgorithm {
     private static String bytesToString(byte[] encrypted) {
         StringBuilder test = new StringBuilder();
         for (byte b : encrypted) {
-            test.append(Byte.toString(b));
+            test.append(b);
         }
         return test.toString();
     }

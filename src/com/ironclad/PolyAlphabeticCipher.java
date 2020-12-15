@@ -6,43 +6,45 @@ public class PolyAlphabeticCipher {
     public static String generateKey(String str, String key) {
         int x = str.length();
 
+        StringBuilder keyBuilder = new StringBuilder(key);
         for (int i = 0; ; i++) {
             if (x == i)
                 i = 0;
-            if (key.length() == str.length())
+            if (keyBuilder.length() == str.length())
                 break;
 
-            key += (key.charAt(i));
+            keyBuilder.append(keyBuilder.charAt(i));
         }
+        key = keyBuilder.toString();
 
         return key;
     }
 
     public static String encryptText(String str, String key) {
-        String cipherText = "";
+        StringBuilder cipherText = new StringBuilder();
 
         for (int i = 0; i < str.length(); i++) {
             int x = (str.charAt(i) + key.charAt(i)) % 26;
 
             x += 'A';
 
-            cipherText += (char) (x);
+            cipherText.append((char) (x));
         }
 
-        return cipherText;
+        return cipherText.toString();
     }
 
     public static String decryptText(String cipher_text, String key) {
-        String orgText = "";
+        StringBuilder orgText = new StringBuilder();
 
         for (int i = 0; i < cipher_text.length() && i < key.length(); i++) {
             int x = (cipher_text.charAt(i) - key.charAt(i) + 26) % 26;
 
             x += 'A';
-            orgText += (char) (x);
+            orgText.append((char) (x));
         }
 
-        return orgText;
+        return orgText.toString();
     }
 
     public static void main(String[] args) {

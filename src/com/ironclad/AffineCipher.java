@@ -25,7 +25,7 @@ public class AffineCipher {
     private static String decryptMessage(String cipherText, int a, int b) {
         StringBuilder msg = new StringBuilder(" ");
         int aInverse = 0;
-        int flag = 0;
+        int flag;
 
         for (int i = 0; i < 26; i++) {
             flag = (a * i) % 26;

@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class CaeserCipher {
 
     public static String encrypt(String text, int s) {
-        StringBuffer encrypted = new StringBuffer();
+        StringBuilder encrypted = new StringBuilder();
+        return getString(text, s, encrypted);
+    }
+
+    private static String getString(String text, int s, StringBuilder encrypted) {
         for (int i = 0; i < text.length(); i++) {
             if (Character.isUpperCase(text.charAt(i))) {
                 char ch = (char) (((int) text.charAt(i) +
@@ -22,22 +26,11 @@ public class CaeserCipher {
     }
 
     public static String decrypt(String cipher, int shift) {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
 
         shift = 26 - shift;
 
-        for (int i = 0; i < cipher.length(); i++) {
-            if (Character.isUpperCase(cipher.charAt(i))) {
-                char ch = (char) (((int) cipher.charAt(i) +
-                        shift - 65) % 26 + 65);
-                result.append(ch);
-            } else {
-                char ch = (char) (((int) cipher.charAt(i) +
-                        shift - 97) % 26 + 97);
-                result.append(ch);
-            }
-        }
-        return result.toString();
+        return getString(cipher, shift, result);
     }
 
     public static void main(String[] args) {
@@ -48,10 +41,10 @@ public class CaeserCipher {
         System.out.print("Shift By:");
         int shift = scn.nextInt();
 
-        String ceaserCode = encrypt(text, shift);
-        String originalCode = decrypt(ceaserCode, shift);
+        String caeserCode = encrypt(text, shift);
+        String originalCode = decrypt(caeserCode, shift);
 
-        System.out.println("Encryted Message:" + ceaserCode);
-        System.out.println("Decryted Message:" + originalCode);
+        System.out.println("Encrypted Message:" + caeserCode);
+        System.out.println("Decrypted Message:" + originalCode);
     }
 }
